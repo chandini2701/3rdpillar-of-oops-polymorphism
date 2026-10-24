@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Polymorphism | Complete Guide</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav>
+        <a href="#home" class="logo">Java<span>Learn</span></a>
+        <div class="nav-links">
+          <a href="#definition">Definition</a>
+          <a href="#types">Types</a>
+          <a href="#examples">Examples</a>
+          <a href="#practice">Practice</a>
+        </div>
+      </nav>
+
+      <div class="hero-content" id="home">
+        <p class="eyebrow">JAVA OOP CONCEPTS</p>
+        <h1>Java <span>Polymorphism</span></h1>
+        <p>
+          One interface, many forms. Learn the concept, types, rules,
+          advantages, and practical Java programs.
+        </p>
+        <a class="hero-button" href="#definition">Start Learning ↓</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="definition" class="section">
+        <p class="section-label">01 / INTRODUCTION</p>
+        <h2>What is Polymorphism?</h2>
+        <p>
+          Polymorphism is one of the four main pillars of Object-Oriented
+          Programming (OOP) in Java. The word polymorphism comes from two words:
+        </p>
+
+        <div class="grid two-columns">
+          <article class="info-card">
+            <h3>Poly</h3>
+            <p>Means many.</p>
+          </article>
+          <article class="info-card">
+            <h3>Morphism</h3>
+            <p>Means forms.</p>
+          </article>
+        </div>
+
+        <div class="highlight">
+          <strong>Definition:</strong>
+          Polymorphism is the ability of an object or method to take many forms
+          and behave differently depending on the situation.
+        </div>
+
+        <h3>Real-life example</h3>
+        <p>
+          A person can act as a student in college, an employee at work, and a
+          customer in a shop. The same person performs different roles in
+          different situations.
+        </p>
+        <p>
+          Similarly, in Java, the same method name or parent reference can
+          produce different behavior.
+        </p>
+      </section>
+
+      <section id="types" class="section">
+        <p class="section-label">02 / CLASSIFICATION</p>
+        <h2>Types of Polymorphism</h2>
+
+        <div class="grid two-columns">
+          <article class="info-card">
+            <span class="number">01</span>
+            <h3>Compile-Time Polymorphism</h3>
+            <p>
+              Achieved through method overloading. The compiler selects the
+              appropriate method based on its arguments.
+            </p>
+            <p><strong>Also called:</strong> Static polymorphism.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="number">02</span>
+            <h3>Runtime Polymorphism</h3>
+            <p>
+              Achieved through method overriding. The actual object's
+              implementation is selected at runtime.
+            </p>
+            <p><strong>Also called:</strong> Dynamic polymorphism.</p>
+          </article>
+        </div>
+
+        <h3>Difference between the two</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Compile-Time</th>
+                <th>Runtime</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Technique</td>
+                <td>Overloading</td>
+                <td>Overriding</td>
+              </tr>
+              <tr>
+                <td>Selection</td>
+                <td>By compiler</td>
+                <td>By runtime object type</td>
+              </tr>
+              <tr>
+                <td>Inheritance required?</td>
+                <td>No</td>
+                <td>Yes, typically</td>
+              </tr>
+              <tr>
+                <td>Parameters</td>
+                <td>Must differ</td>
+                <td>Must match for overriding</td>
+              </tr>
+              <tr>
+                <td>Binding</td>
+                <td>Generally static</td>
+                <td>Dynamic method dispatch</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="examples" class="section">
+        <p class="section-label">03 / JAVA PROGRAMS</p>
+        <h2>Example 1: Method Overloading</h2>
+        <p>
+          Method overloading means creating multiple methods with the same name
+          but different parameter lists in the same class.
+        </p>
+
+        <div class="code-card">
+          <div class="code-heading">Calculator.java</div>
+          <pre><code>class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(10, 20));
+        System.out.println(c.add(10, 20, 30));
+        System.out.println(c.add(2.5, 3.5));
+    }
+}</code></pre>
+        </div>
+
+        <h3>Output</h3>
+        <pre class="output">
+30
+60
+6.0</pre
+        >
+
+        <p><strong>Explanation:</strong></p>
+        <ul>
+          <li><code>add(10, 20)</code> calls the two-integer method.</li>
+          <li><code>add(10, 20, 30)</code> calls the three-integer method.</li>
+          <li><code>add(2.5, 3.5)</code> calls the two-double method.</li>
+        </ul>
+        <p>
+          All three methods have the same name, but their parameter lists
+          differ. The compiler determines which method to call.
+        </p>
+
+        <h2>Example 2: Method Overriding</h2>
+        <p>
+          Method overriding happens when a child class provides its own
+          implementation of an inherited instance method.
+        </p>
+
+        <div class="code-card">
+          <div class="code-heading">Animal.java</div>
+          <pre><code>class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        Animal a;
+
+        a = new Dog();
+        a.sound();
+
+        a = new Cat();
+        a.sound();
+    }
+}</code></pre>
+        </div>
+
+        <h3>Output</h3>
+        <pre class="output">
+Dog barks
+Cat meows</pre
+        >
+
+        <p><strong>Explanation:</strong></p>
+        <ul>
+          <li><code>Animal a;</code> declares a parent-class reference.</li>
+          <li><code>a = new Dog();</code> makes it refer to a Dog object.</li>
+          <li><code>a.sound();</code> executes the Dog implementation.</li>
+          <li><code>a = new Cat();</code> makes it refer to a Cat object.</li>
+          <li>
+            The next <code>a.sound();</code> executes the Cat implementation.
+          </li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Important:</strong>
+          In runtime polymorphism, the overridden instance method is selected
+          according to the actual object's class, not merely the reference
+          variable's declared type.
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">04 / RULES</p>
+        <h2>Important Rules of Polymorphism</h2>
+        <ul class="rule-list">
+          <li>Overloaded methods must have different parameter lists.</li>
+          <li>
+            Changing only the return type does not create a valid overload.
+          </li>
+          <li>An overridden method must have a compatible return type.</li>
+          <li>An overriding method cannot reduce access visibility.</li>
+          <li>
+            Use <code>@Override</code> to help the compiler check overriding.
+          </li>
+          <li>
+            Static methods are hidden, not overridden in the runtime-dispatch
+            sense.
+          </li>
+          <li>
+            Private methods are not inherited and overridden in the usual sense.
+          </li>
+          <li>Constructors cannot be overridden.</li>
+          <li>Final methods cannot be overridden.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <p class="section-label">05 / BENEFITS</p>
+        <h2>Advantages of Polymorphism</h2>
+        <div class="grid two-columns">
+          <article class="info-card">
+            <h3>Code Reusability</h3>
+            <p>Common interfaces can be used for different implementations.</p>
+          </article>
+          <article class="info-card">
+            <h3>Flexibility</h3>
+            <p>The same method call can produce different behavior.</p>
+          </article>
+          <article class="info-card">
+            <h3>Maintainability</h3>
+            <p>
+              New implementations can be added with fewer changes to calling
+              code.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Loose Coupling</h3>
+            <p>
+              Code can depend on a parent class or interface instead of a
+              specific implementation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="practice" class="section practice">
+        <p class="section-label">06 / INTERACTIVE EXAMPLE</p>
+        <h2>Try Polymorphism</h2>
+        <p>
+          Select an animal. The same <code>sound()</code> operation will show
+          different behavior.
+        </p>
+
+        <div class="demo-controls">
+          <button onclick="showSound('dog')">Dog</button>
+          <button onclick="showSound('cat')">Cat</button>
+          <button onclick="showSound('cow')">Cow</button>
+        </div>
+
+        <div class="demo-result" id="result" aria-live="polite">
+          Select an animal to see its sound.
+        </div>
+
+        <p class="note">
+          This is a JavaScript demonstration of the idea. The Java programs
+          above demonstrate actual Java polymorphism.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="section-label">07 / QUICK REVISION</p>
+        <h2>Interview Questions</h2>
+
+        <details>
+          <summary>1. What is polymorphism in Java?</summary>
+          <p>
+            It is the ability to represent different behaviors through the same
+            method name or common parent type.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. What are the two main types?</summary>
+          <p>Compile-time polymorphism and runtime polymorphism.</p>
+        </details>
+
+        <details>
+          <summary>3. What is method overloading?</summary>
+          <p>
+            Defining methods with the same name but different parameter lists.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. What is method overriding?</summary>
+          <p>
+            A subclass provides a compatible implementation of an inherited
+            instance method.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Can we overload the main method?</summary>
+          <p>
+            Yes. However, the Java launcher starts the program using the
+            recognized main entry-point signature.
+          </p>
+        </details>
+
+        <details>
+          <summary>6. Can we override a final method?</summary>
+          <p>No. A final method cannot be overridden by a subclass.</p>
+        </details>
+
+        <details>
+          <summary>7. Is polymorphism an OOP pillar?</summary>
+          <p>
+            Yes. The four commonly taught OOP pillars are encapsulation,
+            inheritance, abstraction, and polymorphism.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <p>JavaLearn | Learn Java One Concept at a Time</p>
+      <p>Created by Chandini</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
